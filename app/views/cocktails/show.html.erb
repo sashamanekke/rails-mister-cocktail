@@ -1,30 +1,35 @@
-<h1><%= @cocktail.name %></h1>
-<ul>
+<div class="container">
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://cdn.dribbble.com/users/116372/screenshots/2240033/red-cocktail-flat-illustration.jpg');">
 
-  <% @cocktail.doses.each do |dose| %>
-  <li>
-    <%= dose.description %>
-    <%= dose.ingredient.name %>
-    <%= link_to 'delete dose', dose_path(dose), method: :delete%>
-  </li>
-  <% end %>
+    <h1><%= @cocktail.name %></h1>
+    <ul>
 
-</ul>
-<%= simple_form_for([@cocktail, @dose]) do |f| %>
-<%= f.error_notification %>
-<% if @dose.errors.any? %>
-<div id="error_explanation">
-  <ul>
-    <% @dose.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+      <% @cocktail.doses.each do |dose| %>
+      <li>
+        <%= dose.description %>
+        <%= dose.ingredient.name %>
+        <%= link_to 'delete dose', dose_path(dose), method: :delete%>
+      </li>
+      <% end %>
+
+    </ul>
+    <%= simple_form_for([@cocktail, @dose]) do |f| %>
+    <%= f.error_notification %>
+    <% if @dose.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @dose.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
     <% end %>
-  </ul>
+    <%= f.input :description %>
+
+    <%= f.input :ingredient_id, collection: @ingredients %>
+    <%= f.submit "add a dose"%>
+    <% end %>
+
+    <%= link_to 'back to cocktails', cocktails_path %>
+  </div>
 </div>
-<% end %>
-<%= f.input :description %>
-
-<%= f.input :ingredient_id, collection: @ingredients %>
-<%= f.submit "add a dose"%>
-<% end %>
-
-<%= link_to 'back to cocktails', cocktails_path %>

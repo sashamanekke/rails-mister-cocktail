@@ -1,14 +1,20 @@
-<h1>List of Cocktails!!</h1>
-
-
-<ul>
-
-<% @cocktails.each do |cocktail| %>
-  <li>
-    <%= cocktail.name %>
-    <%= link_to 'recipe', cocktail_path(cocktail) %>
-  </li>
-<% end %>
-
-</ul>
-<%= link_to 'add cocktail', new_cocktail_path%>
+<%= render "shared/banner" %>
+<div class="container">
+  <h1>List of Cocktails!!</h1>
+  <div class="row">
+  <% @cocktails.each do |cocktail| %>
+  <div class="col-xs-12 col-sm-4">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://cdn.dribbble.com/users/116372/screenshots/2240033/red-cocktail-flat-illustration.jpg');">
+    <div class="card-category"><%= cocktail.name %></div>
+    <div class="card-description">
+      <h2><%= cocktail.name %></h2>
+      <p><%= link_to 'recipe', cocktail_path(cocktail) %></p>
+    </div>
+    <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+    <a class="card-link" href="<%= cocktail_path(cocktail) %>" ></a>
+  </div>
+  </div>
+  <% end %>
+  </div>
+  <%= link_to 'add cocktail', new_cocktail_path%>
+</div>

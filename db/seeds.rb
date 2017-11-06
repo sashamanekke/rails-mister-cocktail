@@ -8,3 +8,16 @@
 Ingredient.create(name: "lemon")
 Ingredient.create(name: "ice")
 Ingredient.create(name: "mint leaves")
+
+require "json"
+require "open-uri"
+
+
+url = 'http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+file_serialized = open(url).read
+fruits = JSON.parse(file_serialized)
+
+fruits["drinks"].each do |fruit|
+  Ingredient.create(name: fruit["strIngredient1"])
+end
+
