@@ -29,7 +29,7 @@
     <%= f.input :ingredient_id, collection: @ingredients %>
     <%= f.submit "add a dose"%>
     <% end %>
-
+    <%= link_to 'Add new dose', new_cocktail_dose_path(@cocktail) %>
     <%= link_to 'back to cocktails', cocktails_path %>
   </div>
 </div>
